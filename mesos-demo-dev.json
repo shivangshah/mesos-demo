@@ -1,0 +1,71 @@
+{
+  "volumes": null,
+  "id": "/mesos-demo-dev",
+  "cmd": null,
+  "args": null,
+  "user": null,
+  "env": {
+    "STORAGE_PATH": "/var/lib/mesos-demo-dev",
+    "spring.profiles.active": "dev"    
+  },
+  "instances": 1,
+  "cpus": 1,
+  "mem": 1024,
+  "disk": 0,
+  "gpus": 0,
+  "executor": null,
+  "constraints": null,
+  "fetch": null,
+  "storeUrls": null,
+  "backoffSeconds": 1,
+  "backoffFactor": 1.15,
+  "maxLaunchDelaySeconds": 3600,
+  "container": {
+    "docker": {
+      "image": "shivangshah/mesos-demo",
+      "forcePullImage": false,
+      "privileged": false,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "tcp",
+          "name": "mesos-demo-dev",
+          "servicePort": 10010,
+          "labels": {
+            "VIP_0": "/mesos-demo-dev:8080"
+          }
+        }
+      ],
+      "network": "BRIDGE"
+    },
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/var/lib/mesos-demo-dev",
+        "hostPath": "/tmp/mesos-demo-dev",
+        "mode": "RW"
+      }
+    ]
+  },
+  "readinessChecks": null,
+  "dependencies": null,
+  "upgradeStrategy": {
+    "minimumHealthCapacity": 0,
+    "maximumOverCapacity": 0
+  },
+  "labels": {    
+    "HAPROXY_GROUP": "external"    
+  },
+  "acceptedResourceRoles": null,
+  "residency": null,
+  "secrets": null,
+  "taskKillGracePeriodSeconds": null,
+  "portDefinitions": [
+    {
+      "port": 10010,
+      "protocol": "tcp",
+      "labels": {}
+    }
+  ],
+  "requirePorts": false
+}
